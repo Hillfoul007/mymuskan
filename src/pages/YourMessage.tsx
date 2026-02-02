@@ -25,8 +25,8 @@ const YourMessage = () => {
       ]);
 
       if (error) {
-        console.error("Error saving message:", error);
-        alert("There was an error saving your message. Please try again.");
+        console.error("Error saving message:", error.message || error);
+        alert(`Error saving message: ${error.message || "Unknown error"}`);
         setIsLoading(false);
         return;
       }
