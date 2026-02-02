@@ -2,6 +2,9 @@ import FloatingHearts from "@/components/FloatingHearts";
 import PageTransition from "@/components/PageTransition";
 
 const Always = () => {
+  const photo1 = "https://cdn.builder.io/api/v1/image/assets%2Fe2823e0f836947eb93bea5071b7524a3%2F8e40be322f99447d90b22b7efed649fd?format=webp&width=800&height=1200";
+  const photo2 = "https://cdn.builder.io/api/v1/image/assets%2Fe2823e0f836947eb93bea5071b7524a3%2F2ad701433edb4ca09e3ffdcdbb38d0e4?format=webp&width=800&height=1200";
+
   return (
     <PageTransition>
       <div className="min-h-screen romantic-gradient flex flex-col items-center justify-center relative overflow-hidden">
@@ -21,6 +24,26 @@ const Always = () => {
             <p className="font-romantic text-5xl md:text-6xl text-gradient-romantic mb-12">
               Always.
             </p>
+          </div>
+
+          {/* Photos Gallery */}
+          <div className="animate-fade-in animation-delay-500 opacity-0 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="relative overflow-hidden rounded-2xl shadow-dreamy transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo1}
+                  alt="Memory"
+                  className="w-full h-80 object-cover"
+                />
+              </div>
+              <div className="relative overflow-hidden rounded-2xl shadow-dreamy transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo2}
+                  alt="Memory"
+                  className="w-full h-80 object-cover"
+                />
+              </div>
+            </div>
           </div>
 
           {/* Decorative heart pulse */}
