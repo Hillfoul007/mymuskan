@@ -12,15 +12,9 @@ interface StoryCard {
 const stories: StoryCard[] = [
   {
     title: "The Day We Met",
-  content:
+    content:
       "That moment changed everything. I didn't know it then. When I was going to meet you, I don't know whom I am meeting; how she was. I am a bit afraid, but still I am able to give you a flower even after all my shyness. Your smile was the first thing I noticed… and I haven't stopped thinking about it since.",
     emoji: "💫",
-  },
-  {
-    title: "Moments I'll Never Forget",
-    content:
-      "Every laugh we've shared, every quiet moment together, every adventure big and small — they're all treasures I hold close to my heart. You've given me memories I'll cherish forever.",
-    emoji: "🌸",
   },
   {
     title: "Why You're So Special",
