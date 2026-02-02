@@ -19,7 +19,7 @@ const stories: StoryCard[] = [
   {
     title: "Why You're So Special",
     content:
-      "It's the way you care so deeply, the way you light up when you're happy, the way you make everything feel like home. You're not just special to me, Muskan — you're everything.",
+      "It's the way you care so deeply, the way you light up when you're happy, the way you make me feel special and loved. You're not just special to me, Muskan — you're everything.",
     emoji: "💖",
   },
 ];
