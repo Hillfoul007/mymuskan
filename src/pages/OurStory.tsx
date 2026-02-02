@@ -12,8 +12,8 @@ interface StoryCard {
 const stories: StoryCard[] = [
   {
     title: "The Day We Met",
-    content:
-      "That moment changed everything. I didn't know it then, but meeting you was the beginning of the most beautiful chapter of my life. Your smile was the first thing I noticed… and I haven't stopped thinking about it since.",
+  content:
+      "That moment changed everything. I didn't know it then. When I was going to meet you, I don't know whom I am meeting; how she was. I am a bit afraid, but still I am able to give you a flower even after all my shyness. Your smile was the first thing I noticed… and I haven't stopped thinking about it since.",
     emoji: "💫",
   },
   {
