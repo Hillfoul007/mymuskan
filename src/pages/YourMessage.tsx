@@ -82,9 +82,9 @@ const YourMessage = () => {
                 <div className="text-center">
                   <RomanticButton
                     onClick={handleSubmit}
-                    disabled={!message.trim()}
+                    disabled={!message.trim() || isLoading}
                   >
-                    Send to My Heart 💌
+                    {isLoading ? "Sending..." : "Send to My Heart 💌"}
                   </RomanticButton>
                 </div>
               </div>
