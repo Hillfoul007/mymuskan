@@ -26,6 +26,26 @@ const Always = () => {
             </p>
           </div>
 
+          {/* Photos Gallery */}
+          <div className="animate-fade-in animation-delay-500 opacity-0 mb-16">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+              <div className="relative overflow-hidden rounded-2xl shadow-dreamy transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo1}
+                  alt="Memory"
+                  className="w-full h-80 object-cover"
+                />
+              </div>
+              <div className="relative overflow-hidden rounded-2xl shadow-dreamy transform hover:scale-105 transition-transform duration-300">
+                <img
+                  src={photo2}
+                  alt="Memory"
+                  className="w-full h-80 object-cover"
+                />
+              </div>
+            </div>
+          </div>
+
           {/* Decorative heart pulse */}
           <div className="animate-fade-in animation-delay-700 opacity-0">
             <div className="flex justify-center gap-4 mb-16">
