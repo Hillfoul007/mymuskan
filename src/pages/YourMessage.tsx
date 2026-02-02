@@ -3,25 +3,50 @@ import { useNavigate } from "react-router-dom";
 import FloatingHearts from "@/components/FloatingHearts";
 import RomanticButton from "@/components/RomanticButton";
 import PageTransition from "@/components/PageTransition";
+import { supabase } from "@/lib/supabase";
 
 const YourMessage = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     if (!message.trim()) return;
 
-    // Store the message
-    const existingResponse = localStorage.getItem("proposalResponse");
-    const response = existingResponse ? JSON.parse(existingResponse) : {};
+    setIsLoading(true);
+    try {
+      // Save message to Supabase
+      const { error } = await supabase.from("messages").insert([
+        {
+          message: message.trim(),
+          created_at: new Date().toISOString(),
+        },
+      ]);
 
-    response.message = message;
-    response.messageTimestamp = new Date().toISOString();
+      if (error) {
+        console.error("Error saving message:", error);
+        alert("There was an error saving your message. Please try again.");
+        setIsLoading(false);
+        return;
+      }
 
-    localStorage.setItem("proposalResponse", JSON.stringify(response));
+      // Also store locally for backward compatibility
+      const existingResponse = localStorage.getItem("proposalResponse");
+      const response = existingResponse ? JSON.parse(existingResponse) : {};
 
-    setSubmitted(true);
+      response.message = message;
+      response.messageTimestamp = new Date().toISOString();
+
+      localStorage.setItem("proposalResponse", JSON.stringify(response));
+
+      setSubmitted(true);
+    } catch (err) {
+      console.error("Error:", err);
+      alert("There was an error saving your message. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
