@@ -3,50 +3,25 @@ import { useNavigate } from "react-router-dom";
 import FloatingHearts from "@/components/FloatingHearts";
 import RomanticButton from "@/components/RomanticButton";
 import PageTransition from "@/components/PageTransition";
-import { supabase } from "@/lib/supabase";
 
 const YourMessage = () => {
   const navigate = useNavigate();
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     if (!message.trim()) return;
 
-    setIsLoading(true);
-    try {
-      // Save message to Supabase
-      const { error } = await supabase.from("messages").insert([
-        {
-          message: message.trim(),
-          created_at: new Date().toISOString(),
-        },
-      ]);
+    // Store message locally
+    const existingResponse = localStorage.getItem("proposalResponse");
+    const response = existingResponse ? JSON.parse(existingResponse) : {};
 
-      if (error) {
-        console.error("Error saving message:", error.message || error);
-        alert(`Error saving message: ${error.message || "Unknown error"}`);
-        setIsLoading(false);
-        return;
-      }
+    response.message = message;
+    response.messageTimestamp = new Date().toISOString();
 
-      // Also store locally for backward compatibility
-      const existingResponse = localStorage.getItem("proposalResponse");
-      const response = existingResponse ? JSON.parse(existingResponse) : {};
+    localStorage.setItem("proposalResponse", JSON.stringify(response));
 
-      response.message = message;
-      response.messageTimestamp = new Date().toISOString();
-
-      localStorage.setItem("proposalResponse", JSON.stringify(response));
-
-      setSubmitted(true);
-    } catch (err) {
-      console.error("Error:", err);
-      alert("There was an error saving your message. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
+    setSubmitted(true);
   };
 
   return (
@@ -82,9 +57,9 @@ const YourMessage = () => {
                 <div className="text-center">
                   <RomanticButton
                     onClick={handleSubmit}
-                    disabled={!message.trim() || isLoading}
+                    disabled={!message.trim()}
                   >
-                    {isLoading ? "Sending..." : "Send to My Heart 💌"}
+                    Send to My Heart 💌
                   </RomanticButton>
                 </div>
               </div>
